@@ -281,16 +281,6 @@ public class TagGroup extends ViewGroup {
 
             if (child.getVisibility() != GONE) {
                 rowWidth += childWidth;
-                if (rowWidth > widthSize) { // Next line.
-                    if (++row == maxRows) {
-                        break;
-                    }
-                    rowWidth = childWidth; // The next row width.
-                    height += rowMaxHeight + verticalSpacing;
-                    rowMaxHeight = childHeight; // The next row max height.
-                } else { // This line.
-                    rowMaxHeight = Math.max(rowMaxHeight, childHeight);
-                }
                 rowWidth += horizontalSpacing;
             }
         }
@@ -300,16 +290,12 @@ public class TagGroup extends ViewGroup {
         // Account for the padding too.
         height += getPaddingTop() + getPaddingBottom();
 
-        // If the tags grouped in one row, set the width to wrap the tags.
-        if (row == 0) {
-            width = rowWidth;
-            width += getPaddingLeft() + getPaddingRight();
-        } else {// If the tags grouped exceed one line, set the width to match the parent.
-            width = widthSize;
-        }
 
-        setMeasuredDimension(widthMode == MeasureSpec.EXACTLY ? widthSize : width,
-                heightMode == MeasureSpec.EXACTLY ? heightSize : height);
+        width = rowWidth;
+        width += getPaddingLeft() + getPaddingRight();
+
+
+        setMeasuredDimension(width, heightMode == MeasureSpec.EXACTLY ? heightSize : height);
     }
 
     @Override
