@@ -288,7 +288,6 @@ public class TagGroup extends ViewGroup {
                     rowWidth = childWidth; // The next row width.
                     height += rowMaxHeight + verticalSpacing;
                     rowMaxHeight = childHeight; // The next row max height.
-                    row++;
                 } else { // This line.
                     rowMaxHeight = Math.max(rowMaxHeight, childHeight);
                 }
