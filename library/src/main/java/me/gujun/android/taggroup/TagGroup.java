@@ -67,6 +67,7 @@ public class TagGroup extends ViewGroup {
     private final float default_vertical_spacing;
     private final float default_horizontal_padding;
     private final float default_vertical_padding;
+    private final int default_max_rows;
 
     /**
      * Indicates whether this TagGroup is set up to APPEND mode or DISPLAY mode. Default is false.
@@ -163,6 +164,8 @@ public class TagGroup extends ViewGroup {
      */
     private int verticalPadding;
 
+    private int maxRows;
+
     /**
      * Listener used to dispatch tag change event.
      */
@@ -217,6 +220,7 @@ public class TagGroup extends ViewGroup {
             verticalSpacing = (int) a.getDimension(R.styleable.TagGroup_atg_verticalSpacing, default_vertical_spacing);
             horizontalPadding = (int) a.getDimension(R.styleable.TagGroup_atg_horizontalPadding, default_horizontal_padding);
             verticalPadding = (int) a.getDimension(R.styleable.TagGroup_atg_verticalPadding, default_vertical_padding);
+            maxRows = (int) a.getDimension(R.styleable.TagGroup_atg_maxRows, default_max_rows);
         } finally {
             a.recycle();
         }
@@ -279,6 +283,9 @@ public class TagGroup extends ViewGroup {
             if (child.getVisibility() != GONE) {
                 rowWidth += childWidth;
                 if (rowWidth > widthSize) { // Next line.
+                    if (++row == maxRow) {
+                        break;
+                    }
                     rowWidth = childWidth; // The next row width.
                     height += rowMaxHeight + verticalSpacing;
                     rowMaxHeight = childHeight; // The next row max height.

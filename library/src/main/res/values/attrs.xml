@@ -40,6 +40,10 @@
         <attr name="atg_verticalSpacing" format="dimension" />
         <attr name="atg_horizontalPadding" format="dimension" />
         <attr name="atg_verticalPadding" format="dimension" />
+
+        <!-- Max rows -->
+        <attr name="atg_maxRow" format="integer" />
+
     </declare-styleable>
 
     <declare-styleable name="Themes">
