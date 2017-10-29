@@ -197,6 +197,7 @@ public class TagGroup extends ViewGroup {
         default_vertical_spacing = dp2px(4.0f);
         default_horizontal_padding = dp2px(12.0f);
         default_vertical_padding = dp2px(3.0f);
+        default_max_rows = 1;
 
         // Load styled attributes.
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TagGroup, defStyleAttr, R.style.TagGroup);
@@ -220,7 +221,7 @@ public class TagGroup extends ViewGroup {
             verticalSpacing = (int) a.getDimension(R.styleable.TagGroup_atg_verticalSpacing, default_vertical_spacing);
             horizontalPadding = (int) a.getDimension(R.styleable.TagGroup_atg_horizontalPadding, default_horizontal_padding);
             verticalPadding = (int) a.getDimension(R.styleable.TagGroup_atg_verticalPadding, default_vertical_padding);
-            maxRows = (int) a.getDimension(R.styleable.TagGroup_atg_maxRows, default_max_rows);
+            maxRows = (int) a.getDimension(R.styleable.TagGroup_atg_maxRow, default_max_rows);
         } finally {
             a.recycle();
         }
@@ -283,7 +284,7 @@ public class TagGroup extends ViewGroup {
             if (child.getVisibility() != GONE) {
                 rowWidth += childWidth;
                 if (rowWidth > widthSize) { // Next line.
-                    if (++row == maxRow) {
+                    if (++row == maxRows) {
                         break;
                     }
                     rowWidth = childWidth; // The next row width.
