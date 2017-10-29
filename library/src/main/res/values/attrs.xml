@@ -42,7 +42,7 @@
         <attr name="atg_verticalPadding" format="dimension" />
 
         <!-- Max rows -->
-        <attr name="atg_maxRow" format="integer" />
+        <attr name="atg_maxRows" format="integer" />
 
     </declare-styleable>
 
